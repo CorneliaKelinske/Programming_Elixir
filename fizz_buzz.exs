@@ -1,9 +1,8 @@
 fizz_buzz = fn
-  0, _, _ -> IO.puts "Fizz"
-  _, 0, _ -> IO.puts "Buzz"
-  _, _, a -> IO.puts "#{a}"
+  0, 0, _ -> "FizzBuzz"
+  0, _, _ -> "Fizz"
+  _, 0, _ -> "Buzz"
+  _, _, a -> "#{a}"
 end
 
-fizz_buzz.(0, 1, 5)
-fizz_buzz.(1, 0, "hello")
-fizz_buzz.(1, 1, "hello")
+IO.puts fizz_buzz.(0, 0, 2)
