@@ -22,4 +22,9 @@ defmodule Lists do
   def even_length(list) do
     rem(Enum.count(list), 2) == 0
   end
+
+  def reduce([], value, _fun), do: value
+  def reduce([h|t], value, func) do
+    reduce(t, func.(h, value), func)
+  end
 end
