@@ -23,8 +23,23 @@ defmodule Lists do
     rem(Enum.count(list), 2) == 0
   end
 
-  def reduce([], value, _fun), do: value
+  def reduce([], value, _func), do: value
   def reduce([h|t], value, func) do
     reduce(t, func.(h, value), func)
   end
+
+  def mapsum([], _func), do: 0
+  def mapsum([h|t], func) do
+    func.(h) + mapsum(t, func)
+  end
+
+  def maximum(list, value \\ 0)
+  def maximum([], value), do: value
+  def maximum([h|t], value) when h >= value do
+    maximum(t, h)
+  end
+  def maximum([h|t], value) when h < value do
+    maximum(t, value)
+  end
+
 end
