@@ -33,13 +33,12 @@ defmodule Lists do
     func.(h) + mapsum(t, func)
   end
 
-  def maximum(list, value \\ 0)
+  def maximum([]), do: nil
   def maximum([], value), do: value
+  def maximum([h|t]), do: maximum(t, h)
   def maximum([h|t], value) when h >= value do
     maximum(t, h)
   end
-  def maximum([h|t], value) when h < value do
-    maximum(t, value)
-  end
+  def maximum([_h|t], value), do: maximum(t, value)
 
 end
