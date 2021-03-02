@@ -41,4 +41,13 @@ defmodule Lists do
   end
   def maximum([_h|t], value), do: maximum(t, value)
 
+  def span(a, a), do: [a]
+  def span(a, b) when b > a, do: [a | span(a+1, b)]
+
+  def spanni_span(a, b, list \\ [])
+  def spanni_span(a, a, list), do: list
+  def spanni_span(a, b, list) when b > a do
+    spanni_span(a+1, b, [a | list])
+  end
+
 end
