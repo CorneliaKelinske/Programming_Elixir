@@ -45,9 +45,9 @@ defmodule Lists do
   def span(a, b) when b > a, do: [a | span(a+1, b)]
 
   def spanni_span(a, b, list \\ [])
-  def spanni_span(a, a, list), do: list
+  def spanni_span(a, a, list), do: [a | list]
   def spanni_span(a, b, list) when b > a do
-    spanni_span(a+1, b, [a | list])
+    spanni_span(a, b-1, [b| list])
   end
 
 end
