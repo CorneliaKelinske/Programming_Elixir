@@ -13,12 +13,15 @@ defmodule GameTest do
   end
 
   test "each element of letters is a lower-case ASCII character" do
-
     game = Game.new_game()
-
     assert Enum.all?(game.letters, fn letter -> letter >= "a" && letter <= "z" end)
+  end
 
-
+  test "state isn't changed for :won game" do
+    game = Game.new_game()
+           |> Map.put(:game_state, :won)
+    { new_game, _ } = Game.make_move(game, "x")
+    assert new_game == game
   end
 
 
