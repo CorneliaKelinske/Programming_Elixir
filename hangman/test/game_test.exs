@@ -13,7 +13,7 @@ defmodule GameTest do
 
   test "each element of letters is a lower-case ASCII character" do
     game = Game.new_game()
-    assert Enum.all?(game.letters, fn letter -> letter >= "a" && letter <= "z" end)
+    assert Enum.all?(game.letters, & String.downcase(&1) == &1)
   end
 
   test "state isn't changed for :won or :lost game" do
