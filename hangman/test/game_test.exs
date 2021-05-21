@@ -13,7 +13,7 @@ defmodule GameTest do
 
   test "each element of letters is a lower-case ASCII character" do
     game = Game.new_game()
-    assert Enum.all?(game.letters, & String.downcase(&1) == &1)
+    assert Enum.all?(game.letters, &(String.downcase(&1) == &1))
   end
 
   test "state isn't changed for :won or :lost game" do
@@ -44,14 +44,12 @@ defmodule GameTest do
     assert game.turns_left == 7
   end
 
-
   test "bad guess is recognized" do
     game = Game.new_game("wibble")
     game = Game.make_move(game, "x")
     assert game.game_state == :bad_guess
     assert game.turns_left == 6
   end
-
 
   test "a won game is recognized" do
     moves = [
@@ -64,8 +62,7 @@ defmodule GameTest do
 
     game = Game.new_game("wibble")
 
-
-    Enum.reduce(moves,game, fn ({guess, state}, new_game)->
+    Enum.reduce(moves, game, fn {guess, state}, new_game ->
       new_game = Game.make_move(new_game, guess)
       assert new_game.game_state == state
       new_game
@@ -80,15 +77,17 @@ defmodule GameTest do
       {"d", :bad_guess},
       {"e", :bad_guess},
       {"f", :bad_guess},
-      {"g", :lost},
+      {"g", :lost}
     ]
 
     game = Game.new_game("w")
 
-    Enum.reduce(moves, game, fn ({guess, state}, new_game)->
+    Enum.reduce(moves, game, fn {guess, state}, new_game ->
       new_game = Game.make_move(new_game, guess)
       assert new_game.game_state == state
       new_game
     end)
   end
+
+
 end
