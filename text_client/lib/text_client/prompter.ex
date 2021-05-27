@@ -1,6 +1,8 @@
 defmodule TextClient.Prompter do
 
-  def accept_move(game) do
+  alias TextClient.State
+
+  def accept_move(game = %State{}) do
     IO.gets("Your guess: ")
     |> check_input(game)
 
@@ -16,7 +18,7 @@ defmodule TextClient.Prompter do
     exit(:normal)
   end
 
-  defp check_input(input, game) do
+  defp check_input(input, game = %State{}) do
     input = String.trim(input)
     cond do
       input =~ ~r/\A[a-z]\z/ ->
