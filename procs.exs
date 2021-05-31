@@ -1,11 +1,11 @@
 defmodule Procs do
 
- def greeter do
+ def greeter(what_to_say) do
   receive do
     msg ->
-      IO.puts "Hello #{IO.inspect(msg)}"
+      IO.puts "#{what_to_say}: #{msg}"
   end
-  greeter()
+  greeter(what_to_say)
  end
 
 end
