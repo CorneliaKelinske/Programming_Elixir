@@ -1,9 +1,13 @@
 defmodule Dictionary.WordList do
 
-  def random_word(word_list) do
-    word_list()
-    |> Enum.random()
+  def start_link() do
+    Agent.start_link(&word_list/0)
   end
+
+  def random_word(agent) do
+    Agent.get(agent, &Enum.random)
+  end
+  
   def word_list do
     "assets/words.txt"
     |> Path.expand("/home/connie/daeaev/Programming_Elixir/dictionary")
